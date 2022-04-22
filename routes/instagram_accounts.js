@@ -24,7 +24,7 @@ instagram_router.get('/data/:name', (req, res, next) =>{
 })
 
 instagram_router.post('/add/:name', (req, res, next)=>{
-    db.query('INSERT INTO instagram_accounts (id, name, account) VALUES ((SELECT max(id)+1 FROM instagram_accounts), $1, false);', [req.params.name], (err, results)=>{
+    db.query('INSERT INTO instagram_accounts (account_name, account) VALUES ($1, false)', [req.params.name], (err, results)=>{
         if(err){
             return next(err)
         }
